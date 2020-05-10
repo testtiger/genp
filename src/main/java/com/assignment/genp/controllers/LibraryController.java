@@ -1,0 +1,99 @@
+package com.assignment.genp.controllers;
+
+import java.util.List;
+
+import com.assignment.genp.models.Book;
+import com.assignment.genp.repository.BooksRepository;
+import com.assignment.genp.services.BooksServices;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.assignment.genp.models.Library;
+import com.assignment.genp.services.LibraryServices;
+
+/***
+
+ Created by 
+ @author dkammara on Monday - 5/4/2020
+
+ */
+@RestController
+@RequestMapping("/api/libs")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+
+
+public class LibraryController {
+	
+
+	@Autowired
+	LibraryServices libraryServices;
+	@Autowired
+	BooksServices booksServices;
+
+	@Autowired
+	BooksRepository booksRepository;
+
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Library> getLibrary(@PathVariable long id){
+		Library library=libraryServices.getLibrary(id);
+		return new ResponseEntity<Library>(library,HttpStatus.OK);
+	}
+
+	@GetMapping
+	public ResponseEntity<List<Library>> getLibraries(){
+		List<Library> libraries=libraryServices.getLibraries();
+		return  new ResponseEntity<List<Library>>(libraries,HttpStatus.OK);
+	}
+	
+	@PostMapping
+	public ResponseEntity<Library> addLibrary(@RequestBody Library libraryToBeAdded){
+		Library addedLibrary=libraryServices.addLibrary(libraryToBeAdded);
+		return  new ResponseEntity<Library>(addedLibrary,HttpStatus.CREATED);
+	}
+	@PutMapping(value="{id}")
+	public ResponseEntity<Library> updateLibrary(@PathVariable long id,@RequestBody Library libraryDetails){
+		Library updatedLibrary=libraryServices.updateLibrary(id,libraryDetails);
+		return  new ResponseEntity<Library>(updatedLibrary,HttpStatus.OK);		
+	}
+
+	@PostMapping(value = "/{id}/books")
+	public ResponseEntity<Book> addBook( @PathVariable long id, @RequestBody Book bookToBeAdded){
+		Library l= new Library();
+		l.setId(id);
+		bookToBeAdded.setLibrary(l);
+
+		Book addedBook=booksServices.addBook(bookToBeAdded);
+		return  new ResponseEntity<Book>(addedBook,HttpStatus.OK);
+	}
+
+
+	@GetMapping(value = "/{id}/books")
+	public ResponseEntity<List<Book>> getBooks( @PathVariable long id){
+		List<Book> booksList=booksRepository.findByLibraryId(id);
+		return  new ResponseEntity<List<Book>>(booksList,HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/{lib_id}/books/{id}")
+	public ResponseEntity<Book> getABook( @PathVariable long id){
+		Book book=booksRepository.findById(id).get();
+		return  new ResponseEntity<Book>(book,HttpStatus.OK);
+	}
+
+	@PutMapping(value = "/{lib_id}/books/{id}")
+	public ResponseEntity<Book> updateABook( @PathVariable long id, @RequestBody Book book){
+		Book updatedBook=booksServices.updateBook(id,book);
+		return  new ResponseEntity<Book>(updatedBook,HttpStatus.OK);
+	}
+
+
+}
+
+
+// course
+//Topics
+// A topic can contains multiple courses
+// java can contains muitplie course - core java,collection api etc
+// Topic - Libraray & course -Book
+// like a Library can contain  multiple courses
