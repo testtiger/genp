@@ -35,7 +35,14 @@ public class BooksServices extends GenericService{
 		return booksRepository.save(bookToBeAdded);
 		
 	}
-	
+
+	public List<Book> findByLibraryId(long id){
+		return booksRepository.findByLibraryId(id);
+	}
+
+	public Book findById(long id){
+		return booksRepository.findById(id).get();
+	}
 	
 
 }

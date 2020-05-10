@@ -72,6 +72,12 @@ class App extends React.Component {
             />
           </div>
           <div className="column">
+            <h4>
+              Books List{" "}
+              {this.state.selectedLibName
+                ? "for " + this.state.selectedLibName
+                : ""}
+            </h4>
             <BooksList
               libId={this.state.selectedLibId}
               name={this.state.selectedLibName}
@@ -89,5 +95,5 @@ class App extends React.Component {
 export default App;
 
 function showNoSelectedText(text) {
-  return <span>No {text} selected</span>;
+  return <span>Select A {text} to display</span>;
 }

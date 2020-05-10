@@ -6,24 +6,31 @@ export default function LibraryList(props) {
   return (
     <div>
       <h1>Libraries list</h1>
-      <Library list={list} showBooksHandler={showBooksHandler} />
+      <table>
+        <Library list={list} showBooksHandler={showBooksHandler} />
+      </table>
     </div>
   );
 }
+
 
 export function Library(props) {
   var resp = props.list;
 
   var libEle = resp.map((lib) => {
     return (
-      <li key={lib.id}>
-        <span>{lib.name}</span>
-        <button onClick={() => props.showBooksHandler(lib.id, lib.name)}>
-          Show Books
-        </button>
-      </li>
+      <tr key={lib.id}>
+        <td>
+          <h3>{lib.name}</h3>
+        </td>
+        <td>
+          <button onClick={() => props.showBooksHandler(lib.id, lib.name)}>
+            Show Books
+          </button>
+        </td>
+      </tr>
     );
   });
 
-  return <ul className="listItem">{libEle}</ul>;
+  return <tbody className="listItem">{libEle}</tbody>;
 }

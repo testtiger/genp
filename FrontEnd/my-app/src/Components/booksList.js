@@ -6,32 +6,44 @@ export default function BooksList(props) {
   }
   return (
     <React.Fragment>
-      <h1>BookList</h1>
-      <Book list={props.list} clickHandler={props.clickHandler} />
+      <table>
+        <Book list={props.list} clickHandler={props.clickHandler} />
+      </table>
     </React.Fragment>
   );
 }
 
-function Book(props) {
+export function Book(props) {
   var resp = props.list;
   if (props.list.length === 0) {
     return <span>No Books present under lib</span>;
   }
   var bookEle = resp.map((book) => {
     return (
-      <li key={book.bookId}>
-        <span>{book.name}</span>
-        <span>{book.author}</span>
-        <button
-          onClick={() => {
-            props.clickHandler(book.bookId, book.name);
-          }}
-        >
-          Show details
-        </button>
-      </li>
+      <tr key={book.bookId}>
+        <td>
+          <h5>
+            {(function () {
+              let b = book.name;
+              return b.toUpperCase();
+            })()}
+          </h5>
+        </td>
+        <td>
+          <span>by {book.author}</span>
+        </td>
+        <td>
+          <button
+            onClick={() => {
+              props.clickHandler(book.bookId, book.name);
+            }}
+          >
+            Show details
+          </button>
+        </td>
+      </tr>
     );
   });
 
-  return <ul className="listItem">{bookEle}</ul>;
+  return <tbody className="listItem">{bookEle}</tbody>;
 }

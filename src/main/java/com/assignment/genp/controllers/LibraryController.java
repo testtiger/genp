@@ -71,13 +71,13 @@ public class LibraryController {
 
 	@GetMapping(value = "/{id}/books")
 	public ResponseEntity<List<Book>> getBooks( @PathVariable long id){
-		List<Book> booksList=booksRepository.findByLibraryId(id);
+		List<Book> booksList=booksServices.findByLibraryId(id);
 		return  new ResponseEntity<List<Book>>(booksList,HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{lib_id}/books/{id}")
 	public ResponseEntity<Book> getABook( @PathVariable long id){
-		Book book=booksRepository.findById(id).get();
+		Book book=booksServices.findById(id);
 		return  new ResponseEntity<Book>(book,HttpStatus.OK);
 	}
 
@@ -91,9 +91,3 @@ public class LibraryController {
 }
 
 
-// course
-//Topics
-// A topic can contains multiple courses
-// java can contains muitplie course - core java,collection api etc
-// Topic - Libraray & course -Book
-// like a Library can contain  multiple courses
