@@ -1,4 +1,4 @@
-package com.assignment.genp.repository;
+package com.assignment.genp.exceptions;
 
 public class RepositoryException extends RuntimeException{
 

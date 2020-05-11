@@ -1,6 +1,6 @@
-package com.assignment.genp.services;
+package com.assignment.genp.exceptions;
 
-public class LibrarayNotFoundException {
+public class LibrarayNotFoundException  extends  RuntimeException{
 
 	/**
 	 * 

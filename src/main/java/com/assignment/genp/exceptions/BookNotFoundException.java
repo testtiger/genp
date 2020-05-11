@@ -1,4 +1,4 @@
-package com.assignment.genp.services;
+package com.assignment.genp.exceptions;
 
 public class BookNotFoundException extends RuntimeException{
 	

@@ -1,9 +1,8 @@
 package com.assignment.genp.services;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.assignment.genp.models.Book;
+import com.assignment.genp.exceptions.LibrarayNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +17,9 @@ public class LibraryServices  extends GenericService{
 	BooksServices booksServices;
 
 	public Library getLibrary(long id) {
-		Optional<Library> library=libraryRepository.findById(id);
-		return library.get();
+		return libraryRepository.findById(id).orElseThrow(()->new LibrarayNotFoundException("Library not Found with " +
+				"given id: "+id));
+
 	}
 
 	public List<Library> getLibraries() {

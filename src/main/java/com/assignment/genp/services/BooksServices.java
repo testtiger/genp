@@ -1,8 +1,8 @@
 package com.assignment.genp.services;
 
 import java.util.List;
-import java.util.Optional;
 
+import com.assignment.genp.exceptions.BookNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +16,7 @@ public class BooksServices extends GenericService{
 
 	public Book getBook(long id) {
 		
-		Optional<Book> book =booksRepository.findById(id);
-		book.orElseThrow(BookNotFoundException::new);
-		return book.get();
+		return  booksRepository.findById(id).orElseThrow(BookNotFoundException::new);
 	}
 
 	public List<Book> getBooks() {
