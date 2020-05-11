@@ -16,3 +16,8 @@ FE Components list: App -> LibarayList ->Library,  BookList->Book
  After cloning or downloading project, navigate to folder location be there at the Pom.xml file location
  open terminal/commnad prompt. run the following command mvn spring-boot:run
  If maven is not installed use mvnw mvn spring-boot:run
+
+POSTMAN collection for API:
+--------------------------
+https://www.postman.com/collections/57a430d79d7f703f71a4, 
+open post man app use this link for sample API calls
