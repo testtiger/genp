@@ -1,16 +1,15 @@
 # genp
 genp
-It is a maven based project, make sure you have maven installed in you system
+It is a maven based project, make sure you have maven installed in your system
 
-Front end code contains inside frontend folder, which is a react project it requires node, npm/yarn please install them before executing it. 
+Front end code contains inside frontend folder, which is a react project it requires node, npm/yarn. please install them before executing it. 
 Node version used in my system:12.16.3, please make sure you update node to it's latest version.
 
 Runing FE App:
 ---------
-Navigate to FrontEnd\my-app> & run yarn start
-even npm start can be used to start the app
+Navigate to FrontEnd\my-app> & run yarn start/ npm start
 
-FE Components list: App -> LibarayList ->Library BookList->Book
+FE Components list: App -> LibarayList ->Library,  BookList->Book
  
  Running BE APP:
  --------------
