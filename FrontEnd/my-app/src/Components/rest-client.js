@@ -1,3 +1,4 @@
+const site_url = "http://localhost:8888";
 export function makeRestcall(type, uri, payload) {
   console.log("type is -----" + type);
   console.log("uri is -----" + uri);
@@ -40,6 +41,7 @@ function frameFormBody(credentials) {
 
 export function makeGetCall(uri, queryParams, extraHeaders) {
   console.log("uri is -----" + uri);
+
   var qString = "";
   if (queryParams) {
     qString = frameFormBody(queryParams);
@@ -61,9 +63,9 @@ export function makeGetCall(uri, queryParams, extraHeaders) {
       reqObj.headers[property] = extraHeaders[property];
     }
   }
-
+  let url = site_url + uri;
   return new Promise(function (resolve, reject) {
-    return fetch(uri, reqObj)
+    return fetch(url, reqObj)
       .then((response) => {
         if (response.status !== 204) {
           return response.json();
@@ -96,8 +98,10 @@ export function makePostCall(uri, extraHeaders, payload) {
 
   reqObj["body"] = payload;
 
+  let url = site_url + uri;
+
   return new Promise(function (resolve, reject) {
-    return fetch(uri, reqObj)
+    return fetch(url, reqObj)
       .then((response) => response.json())
       .then((responseJson) => {
         return resolve(responseJson);
@@ -122,6 +126,8 @@ export function makeDeleteCall(uri, extraHeaders) {
       reqObj.headers[property] = extraHeaders[property];
     }
   }
+
+  let url = site_url + uri;
 
   return new Promise(function (resolve, reject) {
     return fetch(uri, reqObj)
