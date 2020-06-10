@@ -5,6 +5,7 @@ import java.util.List;
 import com.assignment.genp.models.Book;
 import com.assignment.genp.repository.BooksRepository;
 import com.assignment.genp.services.BooksServices;
+import com.assignment.genp.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,12 +36,15 @@ public class LibraryController {
 	@Autowired
 	BooksRepository booksRepository;
 
+	@Autowired
+	UserServices userServices;
+
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Library> getLibrary(@PathVariable long id){
 		Library library=libraryServices.getLibrary(id);
 		return new ResponseEntity<Library>(library,HttpStatus.OK);
 	}
-
+//@RequestParam(defaultValue = "0")
 	@GetMapping
 	public ResponseEntity<List<Library>> getLibraries(){
 		List<Library> libraries=libraryServices.getLibraries();
@@ -87,6 +91,10 @@ public class LibraryController {
 		return  new ResponseEntity<Book>(updatedBook,HttpStatus.OK);
 	}
 
+	@PostMapping(value = "/{lib_id}/books/{id}/{user_id}")
+	public ResponseEntity<Book> requestBook(@PathVariable long user_id){
+		userServices.a
+	}
 
 }
 
