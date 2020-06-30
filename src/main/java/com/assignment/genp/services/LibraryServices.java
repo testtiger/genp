@@ -25,6 +25,22 @@ public class LibraryServices  extends GenericService{
 	public List<Library> getLibraries() {
 		return (List<Library>)libraryRepository.findAll();
 	}
+	/***
+	 * public List<Library> getLibraries(int offset,int limit) {
+	 * 		Pageable paging = PageRequest.of(offset, limit);
+	 * 		Page<Library> pagedResult = libraryRepository.findAll(paging);
+	 * 		if(pagedResult.hasContent()) {
+	 * 			return pagedResult.getContent();
+	 *                } else {
+	 * 			return new ArrayList<Library>();
+	 *        }    * 	}
+	 */
+
+	/***
+	 *
+	 * @param libraryToBeAdded
+	 * @return
+	 */
 
 	public Library addLibrary(Library libraryToBeAdded) {
 		return libraryRepository.save(libraryToBeAdded);

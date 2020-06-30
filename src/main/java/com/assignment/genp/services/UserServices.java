@@ -28,7 +28,7 @@ public class UserServices {
         User user = new User();
         List<Book> books = new ArrayList<>();
         books.add(book);
-        user.setBook(books);
+       // user.setBook(books);
         return repository.save(user);
     }
 

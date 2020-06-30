@@ -1,9 +1,6 @@
 package com.assignment.genp.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /***
@@ -12,23 +9,19 @@ import java.util.List;
  @author dkammara on Wednesday - 6/10/2020
 
  */
+@Entity
 public class User {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    long id;
 
     String name;
 
-    public List<Book> getBook() {
-        return booklist;
-    }
 
-    public void setBook(List<Book> booklist) {
-        this.booklist = booklist;
-    }
-
-    @OneToMany
-
-    Library library;
-    @OneToMany
-    List<Book> booklist;
+    @OneToMany(targetEntity = BookRequest.class,cascade = CascadeType.ALL)
+    List<BookRequest> requests;
 
     public String getName() {
         return name;
@@ -54,12 +47,6 @@ public class User {
     public void setId(long id) {
         this.id = id;
     }
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
 
-    public void setLibrary(Library library){
-        this.library=library;
-    }
 
 }

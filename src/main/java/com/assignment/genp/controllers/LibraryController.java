@@ -91,10 +91,10 @@ public class LibraryController {
 		return  new ResponseEntity<Book>(updatedBook,HttpStatus.OK);
 	}
 
-	@PostMapping(value = "/{lib_id}/books/{id}/{user_id}")
+	/*@PostMapping(value = "/{lib_id}/books/{id}/{user_id}")
 	public ResponseEntity<Book> requestBook(@PathVariable long user_id){
-		userServices.a
-	}
+
+	}*/
 
 }
 
