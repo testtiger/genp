@@ -21,13 +21,14 @@ public class BookRequest {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long requestId;
 
-    @OneToOne(targetEntity = User.class,cascade = CascadeType.ALL ,mappedBy = "bookId")
+   /* @OneToOne(targetEntity = User.class,cascade = CascadeType.ALL ,mappedBy = "bookId")
     @Transient
     private  User user;
-
-    @OneToMany(targetEntity = Book.class,cascade = CascadeType.ALL)
+*/
+   /* @OneToMany(targetEntity = Book.class,cascade = CascadeType.ALL)
     @Transient
-    List<Book> book;
+    List<Book> books;
+*/
 
     public long getId() {
         return requestId;
@@ -37,7 +38,7 @@ public class BookRequest {
         this.requestId = id;
     }
 
-    public User getUser() {
+   /* public User getUser() {
         return user;
     }
 
@@ -51,7 +52,7 @@ public class BookRequest {
 
     public void setBook(List<Book> book) {
         this.book = book;
-    }
+    }*/
 
 
 }

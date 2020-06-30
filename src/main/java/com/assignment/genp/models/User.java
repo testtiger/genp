@@ -20,8 +20,8 @@ public class User {
     String name;
 
 
-    @OneToMany(targetEntity = BookRequest.class,cascade = CascadeType.ALL)
-    List<BookRequest> requests;
+  //  @OneToMany(targetEntity = BookRequest.class,cascade = CascadeType.ALL)
+   // List<BookRequest> requests;
 
     public String getName() {
         return name;
